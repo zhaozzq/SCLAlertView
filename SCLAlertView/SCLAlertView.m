@@ -370,14 +370,14 @@ SCLTimerDisplay *buttonTimer;
     }
     
     // Buttons
-    CGFloat x = 12.0f;
+    CGFloat x = MARGIN_BUTTON;
     for (SCLButton *btn in _buttons)
     {
         btn.frame = CGRectMake(x, y, btn.frame.size.width, btn.frame.size.height);
         
         // Add horizontal or vertical offset acording on _horizontalButtons parameter
         if (_horizontalButtons) {
-            x += btn.frame.size.width + 10.0f;
+            x += btn.frame.size.width + 0.0f;
         } else {
             y += btn.frame.size.height + 10.0f;
         }
@@ -695,7 +695,7 @@ SCLTimerDisplay *buttonTimer;
         
         // Update view height
         if (!([_buttons count] > 1)) {
-            self.windowHeight += (btn.frame.size.height + ADD_BUTTON_PADDING);
+            self.windowHeight += (btn.frame.size.height + -5);
         }
     } else {
         // Update view height

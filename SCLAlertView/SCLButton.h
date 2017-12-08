@@ -12,6 +12,10 @@
 #import <UIKit/UIKit.h>
 #endif
 
+#define MARGIN_BUTTON 0.0f
+#define DEFAULT_WINDOW_WIDTH 240
+#define MIN_HEIGHT 35.0f
+
 @class SCLTimerDisplay;
 
 @interface SCLButton : UIButton
