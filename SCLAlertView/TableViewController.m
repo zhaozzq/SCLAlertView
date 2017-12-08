@@ -1,15 +1,14 @@
 //
-//  ViewController.m
+//  TableViewController.m
 //  SCLAlertView
 //
-//  Created by Diogo Autilio on 9/26/14.
-//  Copyright (c) 2014-2016 AnyKey Entertainment. All rights reserved.
+//  Created by zhaozq on 2017/12/8.
+//  Copyright © 2017年 AnyKey Entertainment. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "TableViewController.h"
 #import "SCLAlertView.h"
-
-@interface ViewController ()
+@interface TableViewController ()
 
 @end
 
@@ -22,7 +21,18 @@ NSString *kSubtitle = @"You've just displayed this awesome Pop Up View";
 NSString *kButtonTitle = @"Done";
 NSString *kAttributeTitle = @"Attributed string operation successfully completed.";
 
-@implementation ViewController
+@implementation TableViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
 
 - (IBAction)showSuccess:(id)sender
 {
@@ -45,9 +55,9 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     [alert addButton:@"Second Button" actionBlock:^(void) {
         NSLog(@"Second button tapped");
     }];
-
+    
     alert.soundURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/right_answer.mp3", [NSBundle mainBundle].resourcePath]];
-
+    
     [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
 
@@ -189,7 +199,7 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
         
         return subTitle;
     };
-
+    
     [alert showTitle:self title:@"Congratulations" subTitle:kAttributeTitle style:SCLAlertViewStyleSuccess closeButtonTitle:@"Done" duration:0.0f];
 }
 
@@ -377,8 +387,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     alert.backgroundType = SCLAlertViewBackgroundTransparent;
     
     [alert showWaiting:self title:@"Waiting..."
-            subTitle:@"You've just displayed this awesome Pop Up View with transparent background"
-    closeButtonTitle:nil duration:5.0f];
+              subTitle:@"You've just displayed this awesome Pop Up View with transparent background"
+      closeButtonTitle:nil duration:5.0f];
 }
 
 - (IBAction)showTimer:(id)sender
@@ -386,8 +396,8 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     [alert addTimerToButtonIndex:0 reverse:YES];
     [alert showInfo:self title:@"Countdown Timer"
-            subTitle:@"This alert has a duration set, and a countdown timer on the Dismiss button to show how long is left."
-    closeButtonTitle:@"Dismiss" duration:10.0f];
+           subTitle:@"This alert has a duration set, and a countdown timer on the Dismiss button to show how long is left."
+   closeButtonTitle:@"Dismiss" duration:10.0f];
 }
 
 - (IBAction)showQuestion:(id)sender
@@ -451,5 +461,140 @@ NSString *kAttributeTitle = @"Attributed string operation successfully completed
     
     [alert showSuccess:kSuccessTitle subTitle:kSubtitle closeButtonTitle:kButtonTitle duration:0.0f];
 }
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 19;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case 0:
+            [self showSuccess:nil];
+            break;
+        case 1:
+            [self showSuccessWithHorizontalButtons:nil];
+            break;
+        case 2:
+            [self showError:nil];
+            break;
+        case 3:
+            [self showNotice:nil];
+            break;
+        case 4:
+            [self showWarning:nil];
+            break;
+        case 5:
+            [self showInfo:nil];
+            break;
+        case 6:
+            [self showEdit:nil];
+            break;
+        case 7:
+            [self showEditWithHorizontalButtons:nil];
+            break;
+        case 8:
+            [self showAdvanced:nil];
+            break;
+        case 9:
+            [self ShowAdvancedWithHorizontalButtons:nil];
+            break;
+        case 10:
+            [self showWithDuration:nil];
+            break;
+        case 11:
+            [self showCustom:nil];
+            break;
+        case 12:
+            [self showValidation:nil];
+            break;
+        case 13:
+            [self showValidationWithHorizontalButtons:nil];
+            break;
+        case 14:
+            [self showWaiting:nil];
+            break;
+        case 15:
+            [self showTimer:nil];
+            break;
+        case 16:
+            [self showQuestion:nil];
+            break;
+        case 17:
+            [self showSwitch:nil];
+            break;
+        case 18:
+            [self showWithButtonCustom:nil];
+            break;
+        default:
+            break;
+    }
+}
+
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+*/
+
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+*/
+
+/*
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }   
+}
+*/
+
+/*
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+}
+*/
+
+/*
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+*/
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
